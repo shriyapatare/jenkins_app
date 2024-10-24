@@ -1,30 +1,46 @@
 pipeline {
     agent any
+    tools {
+        nodejs 'NodeJS' // Name of your NodeJS installation in Jenkins
+    }
     stages {
         stage('Checkout') {
             steps {
-                git 'https://github.com/your-username/simple-web-app.git'
+                // Checkout the code from GitHub
+                git url: 'https://github.com/your-repo/your-project.git',
+                branch: 'main'
             }
         }
         stage('Install Dependencies') {
             steps {
+                // Install Node.js dependencies
                 sh 'npm install'
             }
         }
-        stage('Build') {
+        stage('Build with Maven') {
             steps {
-                sh 'npm run build'  // Add a build script if necessary
+                // Build the application using Maven
+                sh 'mvn clean package'
             }
         }
-        stage('Test') {
+        stage('Run Selenium Tests') {
             steps {
-                sh 'npm test'  // Add test command
+                // Run Selenium tests (this assumes you have a script for running your tests)
+                // You may need to adjust this command based on your test setup
+                sh 'mvn test -Dtest=YourSeleniumTestClass'
             }
         }
-        stage('Deploy') {
-            steps {
-                sh 'npm start'
-            }
+    }
+    post {
+        success {
+            echo 'Build and tests were successful!'
+        }
+        failure {
+            echo 'Build or tests failed!'
+        }
+        always {
+            // Clean up or send notifications
+            echo 'Cleaning up...'
         }
     }
 }
