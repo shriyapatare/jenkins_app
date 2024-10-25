@@ -8,7 +8,7 @@ pipeline {
             steps {
                 // Checkout the code from GitHub
                 git url: 'https://github.com/shriyapatare/jenkins_app.git',
-                branch: 'main'
+                branch: 'master'
             }
         }
         stage('Install Dependencies') {
