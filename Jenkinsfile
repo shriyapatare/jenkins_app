@@ -27,7 +27,7 @@ pipeline {
         stage('Run Tests') {
             steps {
                 // Run npm test directly
-                sh 'npm test'
+                sh 'mvn test'
             }
         }
         stage('Run Selenium Tests') {
