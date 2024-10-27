@@ -28,7 +28,7 @@ pipeline {
             steps {
                 // Run Selenium tests (this assumes you have a script for running your tests)
                 // You may need to adjust this command based on your test setup
-                sh 'npm test'
+                sh 'mvn test -Dtest=YourSeleniumTestClass'
             }
         }
     }
