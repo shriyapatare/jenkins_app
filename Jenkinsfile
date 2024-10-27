@@ -24,7 +24,7 @@ pipeline {
                 sh 'mvn clean package'
             }
         }
-        stage('Run Selenium Tests') {
+        stage('Run Tests') {
             steps {
                 // Run npm test directly
                 sh 'npm test'
