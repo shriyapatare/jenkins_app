@@ -24,11 +24,17 @@ pipeline {
                 sh 'mvn clean package'
             }
         }
+        stage('Run Tests') {
+            steps {
+                // Run npm test directly
+                sh 'npm test'
+            }
+        }
         stage('Run Selenium Tests') {
             steps {
                 // Run Selenium tests (this assumes you have a script for running your tests)
                 // You may need to adjust this command based on your test setup
-                sh 'mvn test -Dtest=YourSeleniumTestClass'
+                sh 'mvn test -Dtest=BasicPageLoadTest'
             }
         }
     }
